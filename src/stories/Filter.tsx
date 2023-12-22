@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface FilterProps {
   data: Merchant[];
@@ -14,10 +14,15 @@ export const Filter = ({ data }: FilterProps) => {
   const [filter, setFilter] = useState('');
   const [filteredData, setFilteredData] = useState<Merchant[]>(data);
 
-  useEffect(() => {
-    const fData = data.filter((item) => item.name.toLowerCase().includes(filter));
-    setFilteredData(fData);
-  }, [data, filter]);
+  const filterData = useCallback(
+    (data: Merchant[], filter: string): Merchant[] => (data.filter((item) => item.name.toLowerCase().includes(filter))),
+    []
+  );
+
+  useEffect(() => {  
+    setFilteredData(filterData(data, filter));
+  }, [data, filter, filterData, filteredData]);
+
 
   const total = (data: Merchant[]): number => data.reduce((sum, { amount }) => sum + amount, 0);
 
@@ -29,7 +34,7 @@ export const Filter = ({ data }: FilterProps) => {
         onChange={(e) => setFilter(e.target.value.toLowerCase())}
       />
       <ul>
-        {filteredData.map(({ name, id, amount }) => {
+        {filterData(data, filter).map(({ name, id, amount }) => {
           return (
             <li key={id}>
               <span>{name}</span>
