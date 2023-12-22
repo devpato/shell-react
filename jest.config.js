@@ -1,15 +1,15 @@
-import { fileURLToPath } from 'url';
-import {dirname } from 'path';
-import path from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-console.log(__dirname)
-
+// jest.config.js
 export default {
+    preset: 'ts-jest',
     testEnvironment: 'jsdom',
-    setupFilesAfterEnv: [path.resolve(__dirname, 'src/setupTests.js')],
     moduleNameMapper: {
-        '\\.css$': 'identity-obj-proxy',
-    },    
-}
+      '^@/(.*)$': '<rootDir>/src/$1',
+    },
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+    transform: {
+      '^.+\\.(ts|tsx)$': 'ts-jest',
+    },
+    testMatch: ['<rootDir>/src/**/*.test.(ts|tsx)'],
+    setupFilesAfterEnv: ['./setupTests.ts'],
+  };
+  
