@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-interface FilterProps {
+interface MyComponentProps {
   data: Merchant[];
 }
 
@@ -10,7 +10,7 @@ export interface Merchant {
   id: number;
 }
 
-export const Filter = ({ data }: FilterProps) => {
+export const MyComponent = ({ data }: MyComponentProps) => {
   const [filter, setFilter] = useState('');
   const [filteredData, setFilteredData] = useState<Merchant[]>(data);
 

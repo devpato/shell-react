@@ -1,20 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Filter } from './Filter';
+import { MyComponent } from './MyComponent';
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Example/Filter',
-  component: Filter,
+  title: 'Example/MyComponent',
+  component: MyComponent,
   argTypes: {
     data: [],
   },
-} satisfies Meta<typeof Filter>;
+} satisfies Meta<typeof MyComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
     data: [

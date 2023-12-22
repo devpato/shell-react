@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Filter, Merchant } from './Filter';
+import { MyComponent, Merchant } from './MyComponent';
 import '@testing-library/jest-dom'
 
 describe('Filter component', () => {
@@ -27,7 +27,7 @@ describe('Filter component', () => {
 ]
 
   it('renders the component with initial data', () => {
-    render(<Filter data={mockData} />);
+    render(<MyComponent data={mockData} />);
     
     // Check if the input and list elements are present
     const inputElement = screen.getByPlaceholderText('Filter Data');
@@ -49,7 +49,7 @@ describe('Filter component', () => {
   });
 
   it('filters data based on input', () => {
-    render(<Filter data={mockData} />);
+    render(<MyComponent data={mockData} />);
 
     const inputElement = screen.getByPlaceholderText('Filter Data');
 
